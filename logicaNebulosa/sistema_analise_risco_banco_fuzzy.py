@@ -26,34 +26,36 @@ risco['Baixo'] = fuzz.trimf(risco.universe, [0, 0, 5])
 risco['Médio'] = fuzz.trimf(risco.universe, [0, 5, 10])
 risco['Alto'] = fuzz.trimf(risco.universe, [5, 10, 10])
 
-credito.view()
-plt.show()
+# credito.view()
+# plt.show()
 
-renda.view()
-plt.show()
+# renda.view()
+# plt.show()
 
-divida.view()
-plt.show()
+# divida.view()
+# plt.show()
 
-risco.view()
-plt.show()
+# risco.view()
+# plt.show()
 
-# rule1 = ctrl.Rule(quality['poor'] | service['poor'], tip['low'])
-# rule2 = ctrl.Rule(service['average'], tip['medium'])
-# rule3 = ctrl.Rule(service['good'] | quality['good'], tip['high'])
+rule1 = ctrl.Rule(credito['Excelente'] & divida['Baixa'], risco['Baixo'])
+rule2 = ctrl.Rule(credito['Ruim'] & divida['Alta'], risco['Alto'])
+rule3 = ctrl.Rule(credito['Bom'] & renda['Média'] & divida['Moderada'], risco['Médio'])
+rule4 = ctrl.Rule(credito['Regular'] & divida['Moderada'], risco['Médio'])
 
 # rule1.view()
 # plt.show()
 
-# tipping_ctrl = ctrl.ControlSystem([rule1, rule2, rule3])
+banco_ctrl = ctrl.ControlSystem([rule1, rule2, rule3, rule4])
 
-# tipping = ctrl.ControlSystemSimulation(tipping_ctrl)
+banco = ctrl.ControlSystemSimulation(banco_ctrl)
 
-# tipping.input['quality'] = 6.5
-# tipping.input['service'] = 9.8
+banco.input['credito'] = 9.6
+banco.input['renda'] = 8
+banco.input['divida'] = 2
 
-# tipping.compute()
+banco.compute()
 
-# print(tipping.output['tip'])
-# tip.view(sim=tipping)
-# plt.show()
+print(banco.output['risco'])
+risco.view(sim=banco)
+plt.show()
