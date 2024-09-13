@@ -1,5 +1,3 @@
----
-
 # Algoritmo Fuzzy para Análise de Risco de Crédito
 
 Este é um algoritmo fuzzy para avaliar o risco de crédito com base em três variáveis de entrada: histórico de crédito, renda e dívida. O sistema fuzzy classifica o risco como Baixo, Médio ou Alto, fornecendo um resultado numérico e um rótulo correspondente.
@@ -92,5 +90,3 @@ Rótulo do resultado: Risco Médio
 ## Gráficos
 
 O sistema gera gráficos para as variáveis de entrada e saída que podem ser visualizados ao rodar o código.
-
----
