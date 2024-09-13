@@ -55,7 +55,7 @@ O sistema fuzzy é controlado por 17 regras. Alguns exemplos são:
 - **Regra 1**: Se o crédito é "Excelente" e a dívida é "Baixa", então o risco é "Baixo".
 - **Regra 2**: Se o crédito é "Ruim" e a dívida é "Alta", então o risco é "Alto".
 - **Regra 3**: Se o crédito é "Bom", a renda é "Média" e a dívida é "Moderada", então o risco é "Médio".
-- **Regra 4**: Se o crédito é "Regular" e a dívida é "Moderada", então o risco é "Médio". A menos que a renda seja "Baixa"
+- **Regra 4**: Se o crédito é "Regular", a renda é "Média" ou "Alta" e a dívida é "Moderada", então o risco é "Médio". A menos que a renda seja "Baixa"
 - **Regra 12**: Se o crédito é "Regular", a renda é "Baixa" e a dívida é "Moderada", então o risco é "Alto".
 - **Regra 17**: Se o crédito é "Ruim", a renda é "Alta" e a dívida é "Baixa", então o risco é "Médio".
 
@@ -75,7 +75,7 @@ banco.input['divida'] = 7.5
 
 O sistema calcula o risco com base nessas entradas e fornece o seguinte resultado:
 
-- Resultado numérico: `4.7...`
+- Resultado numérico: `5.34`
 - Rótulo do risco: `Médio`
 
 Além disso, um gráfico da variável `risco` será exibido para visualização.
@@ -83,7 +83,7 @@ Além disso, um gráfico da variável `risco` será exibido para visualização.
 ## Exemplo de Saída
 
 ```bash
-Resultado numérico: 4.7
+Resultado numérico: 5.34
 Rótulo do resultado: Risco Médio
 ```
 

@@ -41,10 +41,10 @@ risco['Alto'] = fuzz.trimf(risco.universe, [5, 10, 10])
 rule1 = ctrl.Rule(credito['Excelente'] & divida['Baixa'], risco['Baixo']) # SE o histórico de crédito é "Excelente" E a dívida atual é "Baixa", ENTÃO o risco é "Baixo. Independente da renda"
 rule2 = ctrl.Rule(credito['Ruim'] & divida['Alta'], risco['Alto']) # SE o histórico de crédito é "Ruim" E a dívida atual é "Alta", ENTÃO o risco é "Alto". Independente da renda
 rule3 = ctrl.Rule(credito['Bom'] & renda['Média'] & divida['Moderada'], risco['Médio']) # SE o histórico de crédito é "Bom" E a renda mensal é "Média" E a dívida atual é "Moderada", ENTÃO o risco é "Médio"
-rule4 = ctrl.Rule(credito['Regular'] & divida['Moderada'], risco['Médio']) # SE o histórico de crédito é "Regular" E a dívida atual é "Moderada", o risco é "Moderado". A menos que a renda seja baixa
+rule4 = ctrl.Rule(credito['Regular'] & divida['Moderada'] & renda['Alta'] | renda['Média'], risco['Médio']) # SE o histórico de crédito é "Regular" E a dívida atual é "Moderada", o risco é "Moderado". A menos que a renda seja baixa
 
 rule5 = ctrl.Rule(credito['Excelente'] & divida['Moderada'], risco['Baixo'])
-rule6 = ctrl.Rule(credito['Excelente'] & divida['Alta'], risco['Baixo'])
+rule6 = ctrl.Rule(credito['Excelente'] & divida['Alta'] & renda['Média'] | renda['Alta'], risco['Baixo'])
 rule7 = ctrl.Rule(credito['Excelente'] & divida['Alta'] & renda['Baixa'], risco['Médio'])
 
 rule8 = ctrl.Rule(credito['Bom'] & divida['Alta'], risco['Médio'])
@@ -57,7 +57,7 @@ rule13 = ctrl.Rule(credito['Regular'] & divida['Alta'], risco['Alto'])
 rule14 = ctrl.Rule(credito['Regular'] & divida['Baixa'], risco['Médio'])
 
 rule15 = ctrl.Rule(credito['Ruim'] & divida['Moderada'], risco['Alto'])
-rule16 = ctrl.Rule(credito['Ruim'] & divida['Baixa'], risco['Alto'])
+rule16 = ctrl.Rule(credito['Ruim'] & divida['Baixa'] & renda['Baixa'] | renda['Média'], risco['Alto'])
 rule17 = ctrl.Rule(credito['Ruim'] & divida['Baixa'] & renda['Alta'], risco['Médio'])
 
 banco_ctrl = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5, rule6, rule7, rule8, rule9, rule10, rule11, rule12, rule13, rule14, rule15, rule16, rule17])
